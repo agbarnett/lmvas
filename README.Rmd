@@ -25,11 +25,10 @@ The goal of eq5d.plus is to run linear models on EQ-5D quality of life data that
 You can install the released version of eq5d.plus from [GitHub](https://github.com/) with:
 
 ```r
-# Install devtools from CRAN
-install.packages("devtools")
-
-# Install latest version from GitHub:
-devtools::install_github("agbarnett/lmvas")
+# use the devtools library
+library(devtools)
+# Install the latest version from GitHub:
+install_github("agbarnett/lmvas")
 ```
 
 
@@ -40,11 +39,11 @@ This example runs a linear model with independent variables of age and sex:
 ```{r example}
 library(eq5d.plus)
 ## example using the Spanish osteoarthritis data
-model = res = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
+model = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
 summary(model)
 ```
 
 The results show a reduced intercept for the VAS compared with the score of `r round(model$summary.fixed$mean[2]*1000)/1000`. 
-Quality of life is lower on averaged for women and for older respondents.
+Quality of life is lower on average for women and for older respondents.
 
-The score and VAS are positively correlated with an estimated correlation of `r round(model$summary.hyperpar$mean[4]*1000)/1000`.
+The score and VAS are positively correlated with an estimated correlation of `r round(model$summary.hyperpar$mean[4]*1000)/1000` ("rho" estimate in model hyperparameters).

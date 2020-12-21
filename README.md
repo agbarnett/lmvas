@@ -15,11 +15,10 @@ You can install the released version of eq5d.plus from
 [GitHub](https://github.com/) with:
 
 ``` r
-# Install devtools from CRAN
-install.packages("devtools")
-
-# Install latest version from GitHub:
-devtools::install_github("agbarnett/lmvas")
+# use the devtools library
+library(devtools)
+# Install the latest version from GitHub:
+install_github("agbarnett/lmvas")
 ```
 
 ## Example
@@ -30,7 +29,7 @@ sex:
 ``` r
 library(eq5d.plus)
 ## example using the Spanish osteoarthritis data
-model = res = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
+model = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
 #> New names:
 #> * NA -> ...3
 #> New names:
@@ -43,7 +42,7 @@ summary(model)
 #>    "inla(formula = as.formula(formula), family = \"normal\", data = 
 #>    for_model2)" 
 #> Time used:
-#>     Pre = 1.86, Running = 4.84, Post = 0.596, Total = 7.29 
+#>     Pre = 1.96, Running = 4.13, Post = 0.495, Total = 6.59 
 #> Fixed effects:
 #>               mean    sd 0.025quant 0.5quant 0.975quant   mode kld
 #> (Intercept)  0.967 0.014      0.939    0.967      0.995  0.967   0
@@ -80,8 +79,8 @@ summary(model)
 ```
 
 The results show a reduced intercept for the VAS compared with the score
-of -0.153. Quality of life is lower on averaged for women and for older
+of -0.153. Quality of life is lower on average for women and for older
 respondents.
 
 The score and VAS are positively correlated with an estimated
-correlation of 0.557.
+correlation of 0.557 (“rho” estimate in model hyperparameters).
