@@ -1,16 +1,22 @@
 Package: eq5d.plus
-Title: What the Package Does (One Line, Title Case)
+Title: Linear models of EQ-5D quality of life data using both the score and the visual analogue scale
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Adrian",
+           family = "Barnett",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "a.barnett@qut.edu.au",
+           comment = c(ORCID = "0000-0001-6339-0374"))
+Description: For fitting linear models where the outcome is the EQ-5D quality of life measure that use both the score and the visual analogue scale (VAS). Fitting using a Bayesian model with the INLA package.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat
+Depends: 
+    R (>= 2.10)
+Imports: 
+    dplyr,
+    INLA

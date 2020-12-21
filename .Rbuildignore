@@ -1,2 +1,5 @@
 ^eq5d\.plus\.Rproj$
 ^\.Rproj\.user$
+^data-raw$          # Code used to create data included in the package
+^LICENSE\.md$
+^README\.Rmd$
