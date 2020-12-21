@@ -44,7 +44,7 @@ model = res = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('a
 summary(model)
 ```
 
-The results show a reduced intercept for the VAS of `r model$summary.fixed$mean[2]`. 
+The results show a reduced intercept for the VAS compared with the score of `r round(model$summary.fixed$mean[2]*1000)/1000`. 
 Quality of life is lower on averaged for women and for older respondents.
 
-The score and VAS are positively correlated with an estimated correlation of `r model$summary.hyperpar$mean[4]`.
+The score and VAS are positively correlated with an estimated correlation of `r round(model$summary.hyperpar$mean[4]*1000)/1000`.

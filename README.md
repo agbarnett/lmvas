@@ -43,7 +43,7 @@ summary(model)
 #>    "inla(formula = as.formula(formula), family = \"normal\", data = 
 #>    for_model2)" 
 #> Time used:
-#>     Pre = 4.12, Running = 10.4, Post = 1.06, Total = 15.6 
+#>     Pre = 1.86, Running = 4.84, Post = 0.596, Total = 7.29 
 #> Fixed effects:
 #>               mean    sd 0.025quant 0.5quant 0.975quant   mode kld
 #> (Intercept)  0.967 0.014      0.939    0.967      0.995  0.967   0
@@ -79,8 +79,9 @@ summary(model)
 #> Marginal log-Likelihood:  546.51
 ```
 
-The results show a reduced intercept for the VAS of -0.152696. Quality
-of life is lower on averaged for women and for older respondents.
+The results show a reduced intercept for the VAS compared with the score
+of -0.153. Quality of life is lower on averaged for women and for older
+respondents.
 
 The score and VAS are positively correlated with an estimated
-correlation of 0.5568724.
+correlation of 0.557.
