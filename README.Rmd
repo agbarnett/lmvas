@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# eq5d.plus
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of eq5d.plus is to run linear models on EQ-5D quality of life data that uses both the score and visual analogue scale (VAS).
+
+## Installation
+
+You can install the released version of eq5d.plus from [GitHub](https://github.com/) with:
+
+```r
+# Install devtools from CRAN
+install.packages("devtools")
+
+# Install latest version from GitHub:
+devtools::install_github("agbarnett/lmvas")
+```
+
+
+## Example
+
+This example runs a linear model with independent variables of age and sex:
+
+```{r example}
+library(eq5d.plus)
+## example using the Spanish osteoarthritis data
+model = res = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
+summary(model)
+```
+
+The results show a reduced intercept for the VAS of `r model$summary.fixed$mean[2]`. 
+Quality of life is lower on averaged for women and for older respondents.
+
+The score and VAS are positively correlated with an estimated correlation of `r model$summary.hyperpar$mean[4]`.
