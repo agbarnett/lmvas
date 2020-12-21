@@ -30,19 +30,13 @@ sex:
 library(eq5d.plus)
 ## example using the Spanish osteoarthritis data
 model = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
-#> New names:
-#> * NA -> ...3
-#> New names:
-#> * NA -> ...4
-#> New names:
-#> * NA -> ...5
 summary(model)
 #> 
 #> Call:
 #>    "inla(formula = as.formula(formula), family = \"normal\", data = 
 #>    for_model2)" 
 #> Time used:
-#>     Pre = 1.96, Running = 4.13, Post = 0.495, Total = 6.59 
+#>     Pre = 1.23, Running = 3.16, Post = 0.406, Total = 4.79 
 #> Fixed effects:
 #>               mean    sd 0.025quant 0.5quant 0.975quant   mode kld
 #> (Intercept)  0.967 0.014      0.939    0.967      0.995  0.967   0
@@ -84,3 +78,5 @@ respondents.
 
 The score and VAS are positively correlated with an estimated
 correlation of 0.557 (“rho” estimate in model hyperparameters).
+
+The model may take a short while to run for very large data sets.

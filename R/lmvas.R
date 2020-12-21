@@ -54,14 +54,16 @@ lmvas = function(vas_name, eq_name, independent_vars = NULL, data){
                      ID = 1:(2*n)))
   # add dependent variable
   to_bind = unlist(c(for_model[,1], for_model[,2])) # score then VAS
+  to_bind = data.frame(to_bind)
+  names(to_bind) = 'eq' # rename
   for_model2 = bind_cols(for_model2, to_bind)
-  names(for_model2)[3] = 'eq'
   # add independent variable(s)
   if(is.null(independent_vars)==FALSE){
     for (var in independent_vars){
       to_bind = unlist(c(for_model[,var], for_model[,var]))
+      to_bind = data.frame(to_bind)
+      names(to_bind) = var # rename
       for_model2 = bind_cols(for_model2, to_bind)
-      names(for_model2)[ncol(for_model2)] = var # rename
     }
   } # end of if
 

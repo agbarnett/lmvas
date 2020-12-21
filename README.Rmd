@@ -47,3 +47,5 @@ The results show a reduced intercept for the VAS compared with the score of `r r
 Quality of life is lower on average for women and for older respondents.
 
 The score and VAS are positively correlated with an estimated correlation of `r round(model$summary.hyperpar$mean[4]*1000)/1000` ("rho" estimate in model hyperparameters).
+
+The model may take a short while to run for very large data sets.
