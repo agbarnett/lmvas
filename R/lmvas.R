@@ -12,7 +12,10 @@
 #' @return inla
 #' @export
 #' @import INLA
-#' @importFrom dplyr bind_cols
+#' @import dplyr
+#' @import ggplot2
+#' @importFrom tidyr gather
+#' @importFrom stringr str_detect
 #' @importFrom stats as.formula
 #' @examples
 #' model = res = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars =

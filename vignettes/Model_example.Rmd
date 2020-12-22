@@ -1,0 +1,74 @@
+---
+title: "Example of modelling the EQ-5D score and visual analogue scale"
+author: Adrian Barnett
+date: 2020-12-22
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Model_example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette shows how to use the `lmvas` function to model EQ-5D quality of life data.
+
+## Example data
+
+We use an example data set from a survey of people with and without lower limb osteoarthritis in Spain [1]. 
+We load the `eq5d.plus` library which includes a random sample of 1,000 participants from the Spanish osteoarthritis study in a data set called `arthritis`.
+
+```{r}
+library(eq5d.plus)
+summary(arthritis)
+```
+
+The data set has just four variables with the two EQ-5D measures, sex and age.
+
+We visually examine the effect of age using box-plots.
+
+```{r, fig.width=7}
+# libraries needed for plotting and data management:
+library(ggplot2)
+library(tidyr)
+library(stringr)
+suppressPackageStartupMessages(library(dplyr))
+# switch to long format:
+long = gather(arthritis, `EQ5D_VAS`, `EQ5D`, key='type', value='eq') %>%
+  mutate(type = ifelse(str_detect(type, 'VAS'), "VAS", "Score"))
+# plot:
+boxplot = ggplot(data=long, aes(x=age, y=eq))+
+  geom_boxplot(fill='darkseagreen2')+
+  facet_wrap(~type)+
+  xlab('Age group')+
+  ylab('EQ-5D')+
+  theme_bw()
+boxplot
+```
+
+The plot shows that older age groups have a generally lower quality of life for both the score and VAS. 
+The VAS has generally lower levels than the score.
+
+## Linear model
+
+Below we run a linear model. The model is run in a Bayesian paradigm using the [INLA](https://www.r-inla.org/) library.
+
+```{r}
+model = lmvas(vas_name='EQ5D_VAS', eq_name='EQ5D', independent_vars = c('age','sex'), data=arthritis)
+summary(model)
+```
+
+The model shows the clear decrease in quality of life with older age. The oldest age group of 85+ has a mean quality of life that is `r -1*round(model$summary.fixed$mean[9]*1000)/1000` lower than the youngest age group of 50 to 54 years (the reference group for age). The 95% credible interval for this difference is from `r round(model$summary.fixed[9,3]*1000)/1000` to `r round(model$summary.fixed[9,5]*1000)/1000`.
+
+There is also a lower mean for the VAS compared with the score of `r -1*round(model$summary.fixed$mean[2]*1000)/1000` (95% credible interval: `r round(model$summary.fixed[2,3]*1000)/1000` to `r round(model$summary.fixed[2,5]*1000)/1000`).
+
+The EQ-5D score and VAS are positively correlated with an estimated correlation of `r round(model$summary.hyperpar$mean[4]*1000)/1000` ("rho" estimate in model hyperparameters).
+
+### Reference
+
+1. Martín-Fernández J, García -Maroto R, Bilbao A, García-Pérez L, Gutiérrez-Teira B, et al. Impact of lower limb osteoarthritis on health-related quality of life: A cross-sectional study to estimate the expressed loss of utility in the Spanish population (2020) _PLOS ONE_ 15(1): e0228398. https://doi.org/10.1371/journal.pone.0228398.

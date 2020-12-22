@@ -21,6 +21,9 @@ library(devtools)
 install_github("agbarnett/lmvas")
 ```
 
+Note that the `INLA` library also has to be installed from
+[GitHub](https://github.com/inbo/INLA).
+
 ## Example
 
 This example runs a linear model with independent variables of age and
@@ -36,7 +39,7 @@ summary(model)
 #>    "inla(formula = as.formula(formula), family = \"normal\", data = 
 #>    for_model2)" 
 #> Time used:
-#>     Pre = 1.23, Running = 3.16, Post = 0.406, Total = 4.79 
+#>     Pre = 2.08, Running = 5.05, Post = 0.587, Total = 7.72 
 #> Fixed effects:
 #>               mean    sd 0.025quant 0.5quant 0.975quant   mode kld
 #> (Intercept)  0.967 0.014      0.939    0.967      0.995  0.967   0
