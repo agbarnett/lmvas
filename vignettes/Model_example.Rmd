@@ -2,7 +2,13 @@
 title: "Example of modelling the EQ-5D score and visual analogue scale"
 author: Adrian Barnett
 date: 2020-12-22
-output: rmarkdown::html_vignette
+output:
+  knitr:::html_vignette:
+    toc: false
+    fig_caption: no
+  pdf_document:
+    highlight: null
+    number_sections: yes
 vignette: >
   %\VignetteIndexEntry{Model_example}
   %\VignetteEngine{knitr::rmarkdown}
