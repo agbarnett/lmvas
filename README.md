@@ -39,7 +39,7 @@ summary(model)
 #>    "inla(formula = as.formula(formula), family = \"normal\", data = 
 #>    for_model2)" 
 #> Time used:
-#>     Pre = 2.08, Running = 5.05, Post = 0.587, Total = 7.72 
+#>     Pre = 1.4, Running = 3.54, Post = 0.428, Total = 5.36 
 #> Fixed effects:
 #>               mean    sd 0.025quant 0.5quant 0.975quant   mode kld
 #> (Intercept)  0.967 0.014      0.939    0.967      0.995  0.967   0
